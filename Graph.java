@@ -5,7 +5,6 @@ import static java.lang.Math.min;
 public class Graph {
     private final GraphNode[] vertices;  // Adjacency list for graph.
     private final String name;  //The file from which the graph was created.
-
     private final int[][] residual;
     private final int [][] flow;
     public Graph(String name, int vertexCount) {
@@ -25,8 +24,6 @@ public class Graph {
 
         // This adds the actual requested edge, along with its capacity
         vertices[source].addEdge(source, destination, capacity);
-        // TODO: This is what you have to describe in the required README.TXT file
-        //       that you submit as part of this assignment.
         vertices[destination].addEdge(destination, source, 0);
         residual[source][destination]+=capacity;
         return true;
@@ -37,22 +34,40 @@ public class Graph {
      */
     public int findMaxFlow(int s, int t, boolean report) {
         int totalFlow=0;
+        ArrayList<GraphNode.EdgeInfo> pathAmount = new ArrayList<>();
         while(hasAugmentingPath(s,t)){
             //you need to go thru all the residuals at index v!!!
+            StringBuilder path= new StringBuilder(" ");
             int availableFlow = Integer.MAX_VALUE;
             for(int v = t; v!=s; v = vertices[v].parent){
                 int w = vertices[v].parent;
+                path.append(v).append(" ");
                 availableFlow=min(availableFlow,residual[w][v]-flow[w][v]);
             }
             for(int v = t; v!=s; v = vertices[v].parent) {
                 int w = vertices[v].parent;
                 flow[w][v] += availableFlow;
                 flow[v][w] -= availableFlow;
+                for (GraphNode.EdgeInfo graphNode : vertices[v].successor) {
+                    if(graphNode.capacity!=0 && !pathAmount.contains(graphNode)) {
+                        pathAmount.add(0,graphNode);
+                    }
+                }
             }
+            path.append(s).append(" ");
             if(report){
-                System.out.println("Flow "+ availableFlow+":");
+                System.out.println("Flow "+ availableFlow+":"+path.reverse());
             }
             totalFlow+=availableFlow;
+        }
+        System.out.println();
+        for (GraphNode.EdgeInfo graphNode : vertices[s].successor) {
+            if(graphNode.capacity!=0 && !pathAmount.contains(graphNode)) {
+                pathAmount.add(0,graphNode);
+            }
+        }
+        for(GraphNode.EdgeInfo graphNode: pathAmount){
+            System.out.println("Edge("+graphNode.from+", "+graphNode.to+") transports "+ graphNode.capacity+" items");
         }
         return totalFlow;
     }
@@ -88,7 +103,9 @@ public class Graph {
      * Algorithm to find the min-cut edges in a network
      */
     public void findMinCut(int s) {
-        // TODO:
+        for(GraphNode.EdgeInfo graphNode: vertices[s].successor){
+            System.out.println("Min Cut Edge: ("+graphNode.from+", "+graphNode.to+")");
+        }
     }
 
     public String toString() {

@@ -7,37 +7,44 @@ public class Assignment7Driver {
         Graph g1 = buildGraph("demands1.txt");
         int flow1 = g1.findMaxFlow(0, 5, true);
         System.out.printf("Total Flow: %d\n", flow1);
+        System.out.println();
+        System.out.println("-- Min Cut: demands1.txt --");
         g1.findMinCut(0);
 
-        System.out.println("-- Max Flow: demands2.txt --");
-        Graph g2 = buildGraph("demands2.txt");
-        int flow2 = g2.findMaxFlow(0, 8, true);
-        System.out.printf("Total Flow: %d\n", flow2);
-        g2.findMinCut(0);
-
-        System.out.println("-- Max Flow: demands3.txt --");
-        Graph g3 = buildGraph("demands3.txt");
-        int flow3 = g3.findMaxFlow(0, 8, true);
-        System.out.printf("Total Flow: %d\n", flow3);
-        g3.findMinCut(0);
-
-        System.out.println("-- Max Flow: demands4.txt --");
-        Graph g4 = buildGraph("demands4.txt");
-        int flow4 = g4.findMaxFlow(0, 7, true);
-        System.out.printf("Total Flow: %d\n", flow4);
-        g4.findMinCut(0);
-
-        System.out.println("-- Max Flow: demands5.txt --");
-        Graph g5 = buildGraph("demands5.txt");
-        int flow5 = g5.findMaxFlow(0, 8, true);
-        System.out.printf("Total Flow: %d\n", flow5);
-        g5.findMinCut(0);
-
-        System.out.println("-- Max Flow: demands6.txt --");
-        Graph g6 = buildGraph("demands6.txt");
-        int flow6 = g6.findMaxFlow(0, 7, true);
-        System.out.printf("Total Flow: %d\n", flow6);
-        g6.findMinCut(0);
+//        System.out.println("-- Max Flow: demands2.txt --");
+//        Graph g2 = buildGraph("demands2.txt");
+//        int flow2 = g2.findMaxFlow(0, 8, true);
+//        System.out.printf("Total Flow: %d\n", flow2);
+//        System.out.println("-- Min Cut: demands2.txt --");
+//        g2.findMinCut(0);
+//
+//        System.out.println("-- Max Flow: demands3.txt --");
+//        Graph g3 = buildGraph("demands3.txt");
+//        int flow3 = g3.findMaxFlow(0, 8, true);
+//        System.out.printf("Total Flow: %d\n", flow3);
+//        System.out.println("-- Min Cut: demands3.txt --");
+//        g3.findMinCut(0);
+//
+//        System.out.println("-- Max Flow: demands4.txt --");
+//        Graph g4 = buildGraph("demands4.txt");
+//        int flow4 = g4.findMaxFlow(0, 7, true);
+//        System.out.printf("Total Flow: %d\n", flow4);
+//        System.out.println("-- Min Cut: demands4.txt --");
+//        g4.findMinCut(0);
+//
+//        System.out.println("-- Max Flow: demands5.txt --");
+//        Graph g5 = buildGraph("demands5.txt");
+//        int flow5 = g5.findMaxFlow(0, 8, true);
+//        System.out.printf("Total Flow: %d\n", flow5);
+//        System.out.println("-- Min Cut: demands5.txt --");
+//        g5.findMinCut(0);
+//
+//        System.out.println("-- Max Flow: demands6.txt --");
+//        Graph g6 = buildGraph("demands6.txt");
+//        int flow6 = g6.findMaxFlow(0, 7, true);
+//        System.out.printf("Total Flow: %d\n", flow6);
+//        System.out.println("-- Min Cut: demands6.txt --");
+//        g6.findMinCut(0);
     }
 
     public static Graph buildGraph(String filename) {
